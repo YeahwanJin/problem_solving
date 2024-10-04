@@ -1,20 +1,20 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
-#define size 1000000
+#define size 1200000
 
 
 long long A[size];
 int k;
-long long N;
+int N;
 
 int make_tree(){ // O(N)
-    for(long long i=pow(2,k-1); i<(pow(2,k-1)+N); i++){ 
+    for(int i=pow(2,k-1); i<(pow(2,k-1)+N); i++){
         cin >> A[i];
     }
     int level=k-1;
     while(level!=0){ 
-        for(long long i=pow(2,level-1); i<pow(2,level); i++){
+        for(int i=pow(2,level-1); i<pow(2,level); i++){
             A[i]=(A[2*i]+A[2*i+1]);
         }
         level-=1;
@@ -22,7 +22,7 @@ int make_tree(){ // O(N)
     return 0;
 }
 
-int renew_tree(long long i, long long v){
+int renew_tree(int i, long long v){
     i=pow(2,k-1)+i-1;
     A[i]=v;
     for(int j=k; j>0; j--){ // O(logN)
@@ -32,39 +32,45 @@ int renew_tree(long long i, long long v){
     return 0;
 }
 
-int add_tree(long long s, long long e){
+int add_tree(int s, int e){ // O(logN)
     long long sum=0;
     s=pow(2,k-1)+s-1;
     e=pow(2,k-1)+e-1;
     if(s>e){
-        long long temp;
+        int temp;
         temp=s;
         s=e;
         e=s;
     }
-    while(s!=e){ // O(logN)
+    while(s!=e){ 
         if((s%2==0)&&(e%2!=0)){
-        s=floor(s/2);
-        e=floor(e/2);
+        s=s/2;
+        e=(e-1)/2;
         }
         else if((s%2==0)&&(e%2==0)){
             sum+=A[e];
-            s=floor(s/2);
-            e=floor(e/2)-1;
+            s=s/2;
+            e=e/2-1;
         }
         else if((s%2!=0)&&(e%2!=0)){
             sum+=A[s];
-            s=floor(s/2)+1;
-            e=floor(e/2);
+            s=(s-1)/2+1;
+            e=(e-1)/2;
         }
         else if((s%2!=0)&&(e%2==0)){
+            if((e-s)==1){
+                sum=sum+A[s]+A[e];
+                break;
+            }
             sum+=A[s];
             sum+=A[e];
-            s=floor(s/2)+1;
-            e=floor(e/2)-1;
+            s=(s-1)/2+1;
+            e=e/2-1;
         }
     }
-    sum+=A[s];
+    if(s==e){
+        sum+=A[s];
+    }
     cout << sum << '\n';
     return 0;
 }
@@ -73,7 +79,7 @@ int main(void){
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    long long x,y,Q;
+    int Q;
     int q;
     cin >> N >> Q;
 
@@ -85,12 +91,17 @@ int main(void){
 
     make_tree();
     for(long long i=0; i<Q; i++){
-        cin >> q >> x >> y;
+        cin >> q;
         if(q==1){
-            renew_tree(x,y);
+            int i;
+            long long v;
+            cin >> i >> v;
+            renew_tree(i,v);
         }
         if(q==2){
-            add_tree(x,y);
+            int s,e;
+            cin >> s >> e;
+            add_tree(s,e);
         }
     }
 

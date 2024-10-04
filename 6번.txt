@@ -7,7 +7,7 @@ i<j에 대해 j에서 i가 같은 높이거나 보여야함. (Ai<=Aj)
 논리: 
 v 입력
 if st.top<=v
-j=i-1; while(v>=st.top: pair_num[i]+=piar_num[j], pop(j), j-=1(if empty, break)) st.push(v)
+j=i-1; while(v>=st.top: pair_num[i]+=1, pop(j), j-=1(if empty, break)) st.push(v)
 
 else if st.top>v:  pair_num[i]=0, push
 에는 각 원소에서 바라본 같거나 낮은 높이가 기록됨.
