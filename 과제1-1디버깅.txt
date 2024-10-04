@@ -1,0 +1,12 @@
+과제1-1디버깅
+
+1차: define macro 뒤에 띄어쓰기, using namespace std 뒤에 ;
+2차: size define 제대로 안됨, 3개 함수에서 A가 선언이 안됨. return 없음, main에서 q,s,e not declared
+3차: global 변수를 main에 넣음
+4차: warning: no return statement in function returning non-void -> return값이 필요, error: no match for 'operator>>'-> cin에 \n 넣음
+5차: 출력 1회, 값이 틀림.-> main함수 or add tree 오류, 입력 idx와 트리idx 불일치 / N,A,q,x,y 입력오류 / maketree idx 오류
+5차: q==1, q==2 결과 확인: add tree=0, renew tree 1회 작동, x,y에 2,3 대입-> make_tree에서 for문 범위 오류로 하나 덜 받음
+6차: add tree: 2회 실행, but 출력값 둘 다 1: 초기화x, 트리 구현 확인: ok, add tree에 s,e 잘 들어갔나 확인->s,e=3이면 11이 아닌 10으로 들어가야함
+7차: make tree 아래레벨 실행x: invalid types 'long long int-> 2i를 2*I로
+8차: renew가 안됨.-> renew 트리에서 i=2^(k-1)+i-1인거 고려
+9차: 런타임 에러: 제한시간초과: iso, nullptr, 반복문, -> 테스트 제거함, 

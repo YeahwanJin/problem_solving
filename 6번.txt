@@ -1,0 +1,30 @@
+6번
+
+i<j에 대해 j에서 i가 같은 높이거나 보여야함. (Ai<=Aj)
+
+모노토닉 스택: 들어온 값이 전에값보다 크면 전에값 pop 및 idx에 값 추가, 이후 push / 전에값보다 작으면 push
+
+논리: 
+v 입력
+if st.top<=v
+j=i-1; while(v>=st.top: pair_num[i]+=piar_num[j], pop(j), j-=1(if empty, break)) st.push(v)
+
+else if st.top>v:  pair_num[i]=0, push
+에는 각 원소에서 바라본 같거나 낮은 높이가 기록됨.
+
+배열: long long pair_num[size]
+변수: N, v  -> long long
+
+
+구조
+using namespace std
+사이즈 define
+include stack
+
+main
+iso, nullptr
+N,v 선언
+stack 선언
+pair_num[size]=0 선언
+for문
+cout pair_num
