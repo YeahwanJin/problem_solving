@@ -49,7 +49,7 @@ int main() {
    
     for(long long i=1; i<=Q; i++){
         if(i!=1){
-            n[i]=(a*n[i-1]+b)%N;
+            n[i]=(a*n[i-1]+b) % N;
             m[i]=(c*m[i-1]+d)%N;
         }
 
